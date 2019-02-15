@@ -1,0 +1,14 @@
+{
+  "name": "mage-reconizer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/pipobizelli/reconizer",
+  "author": "Pipo Bizelli",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "dependencies": {
+    "nuxt": "^2.4.3"
+  }
+}
