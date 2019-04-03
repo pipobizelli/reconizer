@@ -218,28 +218,3 @@ export let Distance = function (p1, p2) {
 export let Deg2Rad = function (d) {
   return (d * Math.PI / 180.0)
 }
-
-export default function () {
-  return {
-    Point,
-    Rectangle,
-    Unistroke,
-    Resample,
-    Result,
-    IndicativeAngle,
-    RotateBy,
-    ScaleTo,
-    TranslateTo,
-    Vectorize,
-    OptimalCosineDistance,
-    DistanceAtBestAngle,
-    DistanceAtAngle,
-    Centroid,
-    BoundingBox,
-    Path,
-    PathDistance,
-    PathLength,
-    Distance,
-    Deg2Rad
-  }
-}
