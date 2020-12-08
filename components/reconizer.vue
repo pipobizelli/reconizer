@@ -20,6 +20,11 @@ export default {
     }
   },
   computed: {
+    legend () {
+      return {
+        height: 32
+      }
+    },
     canvas () {
       if (process.client) {
         return this.$refs.board
@@ -54,9 +59,8 @@ export default {
         this.canvasContext.fillStyle = 'rgb(0,0,0)'
         this.canvasContext.strokeStyle = 'rgb(0,0,0)'
         this.canvasContext.lineWidth = 1
-        this.canvasContext.font = '16px Gentilis'
-        this.canvasContext.fillStyle = 'rgb(255,255,136)'
-        this.canvasContext.fillRect(0, 0, this.rect.width, 20)
+        this.canvasContext.font = '21px sans-serif'
+        this.canvasContext.fillRect(0, 0, this.rect.width, this.legend.height)
       })
     }
   },
@@ -89,7 +93,7 @@ export default {
           this.points = []
         }
         this.points.push(Point(x, y))
-        this.drawText('Recording unistroke...')
+        this.drawText('Desenhando...')
 
         this.canvasContext.arc(x, y, 3, 0, 2 * Math.PI)
         this.canvasContext.fill()
@@ -132,21 +136,21 @@ export default {
       if (this.isDown || button === 2) {
         this.isDown = false
         if (this.points.length >= 10) {
-          console.log(JSON.stringify(this.points))
           var result = Reconize(this.points, this.unistrokes)
-          this.drawText('Result: ' + result.Name + ' (' + this.round(result.Score, 2) + ') in ' + result.Time + ' ms.')
+          this.drawText('Result: ' + result.Name + ' (' + this.round(result.Score, 1) + ') in ' + result.Time + ' ms.')
         } else {
           this.drawText('Too few points made. Please try again.')
         }
       }
     },
     drawText (str) {
-      this.canvasContext.fillStyle = 'rgb(255,255,136)'
-      this.canvasContext.fillRect(0, 0, this.rect.width, 20)
       this.canvasContext.fillStyle = 'rgb(0,0,0)'
-      this.canvasContext.fillText(str, 1, 14)
+      this.canvasContext.fillRect(0, 0, this.rect.width, this.legend.height)
+      this.canvasContext.fillStyle = 'rgb(200,155,50)'
+      this.canvasContext.fillText(str, 5, 21)
     },
     drawConnectedPoint (from, to) {
+      this.canvasContext.fillStyle = 'rgb(0,0,0)'
       this.canvasContext.beginPath()
       this.canvasContext.moveTo(this.points[from].X, this.points[from].Y)
       this.canvasContext.lineTo(this.points[to].X, this.points[to].Y)
